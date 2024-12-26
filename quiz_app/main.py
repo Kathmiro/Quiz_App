@@ -16,14 +16,14 @@ class QuizApp:
         self.score = 0
 
         # Настройка окна
-        self.root.configure(bg="palevioletred")  # Насыщенный розовый фон
+        self.root.configure(bg="palevioletred") 
         screen_width = self.root.winfo_screenwidth()
         screen_height = self.root.winfo_screenheight()
         window_width = screen_width // 2
         window_height = screen_height // 2
         x = (screen_width - window_width) // 2
         y = (screen_height - window_height) // 2
-        self.root.geometry(f"{window_width}x{window_height}+{x}+{y}")  # Четверть экрана, по центру
+        self.root.geometry(f"{window_width}x{window_height}+{x}+{y}") 
 
         # Интерфейс
         font_name = "Calibri" if platform.system() == "Windows" else "Helvetica"  # Поддержка разных шрифтов в разных ОС
@@ -32,13 +32,13 @@ class QuizApp:
         self.question_label = tk.Label(root, text="", font=(font_name, 24, "bold"), wraplength=600,
                                        bg="palevioletred",
                                        fg=question_font_color)  # шрифт, цвет фона и текста
-        self.question_label.pack(pady=20, padx=20, fill="x", anchor="center")  # отступ по горизонтали + fill x + anchor
+        self.question_label.pack(pady=20, padx=20, fill="x", anchor="center")  # отступ по горизонтали 
 
         self.answer_entry = tk.Entry(root, font=(font_name, 20, "bold"), bg="white", fg="darkslategray")  # Шрифт ввода
         self.answer_entry.pack(pady=10, padx=20)
 
         button_color = question_font_hex  # Цвет для кнопки "Ответить"
-        next_button_color = self.lighten_color(button_color, 0.7)  # Цвет для кнопки "Следующий вопрос" - осветленный
+        next_button_color = self.lighten_color(button_color, 0.7)  # Цвет для кнопки "Следующий вопрос"
 
         self.submit_button = tk.Button(root, text="Ответить", command=self.submit_answer,
                                        font=(font_name, 16, "bold"), bg=button_color, fg="white")
@@ -47,11 +47,11 @@ class QuizApp:
         self.next_button = tk.Button(root, text="Следующий вопрос", command=self.next_question,
                                      font=(font_name, 16, "bold"), bg=next_button_color, fg="white")
         self.next_button.pack(pady=10, padx=20)
-        self.next_button["state"] = "disabled"  # Отключён по умолчанию
+        self.next_button["state"] = "disabled" 
 
         self.result_label = tk.Label(root, text="", font=(font_name, 16, "bold"), bg="palevioletred",
                                      fg="midnightblue")  # шрифт, цвет фона и текста
-        self.result_label.pack(pady=10, padx=20, fill="x", anchor="center")  # отступ по горизонтали + fill x + anchor
+        self.result_label.pack(pady=10, padx=20, fill="x", anchor="center")  # отступ по горизонтали 
 
         self.display_question()
 
@@ -108,9 +108,8 @@ class QuizApp:
             b = int(min(255, b + (255 - b) * factor))
             return f'#{r:02x}{g:02x}{b:02x}'
         else:
-            # Используем метод winfo_rgb для получения RGB значений
             rgb = self.root.winfo_rgb(color)
-            r,g,b = (int(c/256) for c in rgb) # делим на 256, чтобы rgb был от 0 до 255
+            r,g,b = (int(c/256) for c in rgb) 
             r = int(min(255, r + (255 - r) * factor))
             g = int(min(255, g + (255 - g) * factor))
             b = int(min(255, b + (255 - b) * factor))
